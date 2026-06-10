@@ -90,17 +90,16 @@ export default function LyricsDemo() {
 
   return (
     <div className="relative h-screen w-screen bg-black overflow-hidden select-none">
-      <BackgroundRender
-        album="/album-art.jpg"
-        playing={playing}
-        hasLyric
-        flowSpeed={isMobile ? 0.8 : 1.5}
-        lowFreqVolume={0.6}
-        renderScale={isMobile ? 0.15 : 0.5}
-        fps={isMobile ? 10 : 30}
-        staticMode={isMobile}
-        className="absolute inset-0 z-0"
-      />
+      {!isMobile && (
+        <BackgroundRender
+          album="/album-art.jpg"
+          playing={playing}
+          hasLyric
+          flowSpeed={1.5}
+          lowFreqVolume={0.6}
+          className="absolute inset-0 z-0"
+        />
+      )}
       <div
         className="absolute inset-0 z-1"
         style={
