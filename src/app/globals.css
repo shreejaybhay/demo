@@ -24,3 +24,15 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.amll-lyric-player {
+  pointer-events: none;
+}
+
+.amll-lyric-player .FmKaba_lyricLine {
+  pointer-events: auto;
+}
+
+.amll-lyric-player .FmKaba_lyricLine:hover {
+  filter: unset !important;
+}
