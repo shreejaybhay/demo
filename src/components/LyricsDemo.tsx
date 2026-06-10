@@ -96,8 +96,9 @@ export default function LyricsDemo() {
         hasLyric
         flowSpeed={isMobile ? 0.8 : 1.5}
         lowFreqVolume={0.6}
-        renderScale={isMobile ? 0.25 : undefined}
-        fps={isMobile ? 15 : undefined}
+        renderScale={isMobile ? 0.15 : 0.5}
+        fps={isMobile ? 10 : 30}
+        staticMode={isMobile}
         className="absolute inset-0 z-0"
       />
       <div
@@ -106,6 +107,7 @@ export default function LyricsDemo() {
           {
             "--amll-lp-color": "#ffffff",
             "--amll-lp-font-size": "max(3.5vh, 2vw, 14px)",
+            "fontWeight": "700",
           } as React.CSSProperties
         }
       >
