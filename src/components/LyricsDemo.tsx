@@ -17,11 +17,9 @@ export default function LyricsDemo() {
   const [playing, setPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [isSeeking, setIsSeeking] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setIsMobile(window.innerWidth < 768 || "maxTouchPoints" in navigator && navigator.maxTouchPoints > 0);
-  }, []);
+  const [isMobile] = useState(
+    () => window.innerWidth < 768 || "maxTouchPoints" in navigator && navigator.maxTouchPoints > 0,
+  );
 
   useEffect(() => {
     const audio = new Audio("/Shape%20of%20You%20-%20Ed%20Sheeran.m4a");
@@ -92,16 +90,16 @@ export default function LyricsDemo() {
 
   return (
     <div className="relative h-screen w-screen bg-black overflow-hidden select-none">
-      {!isMobile && (
-        <BackgroundRender
-          album="/album-art.jpg"
-          playing={playing}
-          hasLyric
-          flowSpeed={1.5}
-          lowFreqVolume={0.6}
-          className="absolute inset-0 z-0"
-        />
-      )}
+      <BackgroundRender
+        album="/album-art.jpg"
+        playing={playing}
+        hasLyric
+        flowSpeed={isMobile ? 0.8 : 1.5}
+        lowFreqVolume={0.6}
+        renderScale={isMobile ? 0.25 : undefined}
+        fps={isMobile ? 15 : undefined}
+        className="absolute inset-0 z-0"
+      />
       <div
         className="absolute inset-0 z-1"
         style={
@@ -116,7 +114,7 @@ export default function LyricsDemo() {
           currentTime={currentTime}
           playing={playing}
           isSeeking={isSeeking}
-          enableSpring={!isMobile}
+          enableSpring
           enableBlur
           enableScale
           wordFadeWidth={0.5}
